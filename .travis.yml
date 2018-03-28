@@ -2,9 +2,9 @@ env:
    global:
      - CONAN_REFERENCE: "http_parser/2.8.0"
      - CONAN_USERNAME: "theirix"
-     - CONAN_LOGIN_USERNAME: "danimtb"
+     - CONAN_LOGIN_USERNAME: "theirix"
      - CONAN_CHANNEL: "ci"
-     - CONAN_UPLOAD: "https://api.bintray.com/conan/danimtb/helloworld"
+     - CONAN_UPLOAD: "https://api.bintray.com/conan/theirix/conan-repo"
      - CONAN_DOCKER_32_IMAGES: 1
 
 linux: &linux
