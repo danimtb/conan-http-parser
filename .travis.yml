@@ -5,6 +5,7 @@ env:
      - CONAN_LOGIN_USERNAME: "danimtb"
      - CONAN_CHANNEL: "ci"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/danimtb/helloworld"
+     - CONAN_DOCKER_32_IMAGES: 1
 
 linux: &linux
    os: linux
