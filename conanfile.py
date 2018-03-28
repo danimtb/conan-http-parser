@@ -48,4 +48,4 @@ class HttpParserConan(ConanFile):
             self.copy("*http_parser.a", dst="lib", keep_path=False) # Macos
 
     def package_info(self):
-        self.cpp_info.libs = ['http_parser']
+        self.cpp_info.libs = tools.collect_libs(self)
