@@ -27,34 +27,14 @@ class HttpParserConan(ConanFile):
         copy_tree("cmake", "%s/cmake" % self.source_subfolder)
 
     def build(self):
-        # tools.patch(patch_file=os.path.join(self.build_folder, 'http-parser.patch'),
-        #             base_path=self.name)
-
-        # if self.settings.os == "Linux" or self.settings.os == "Macos":
-        #     env_build = AutoToolsBuildEnvironment(self)
-
-        #     target = 'install' if self.options.shared else 'install-static'
-
-        #     with tools.environment_append(env_build.vars):
-        #         with tools.chdir(self.name):
-        #             cmd = 'make PREFIX=distr CFLAGS_FAST_EXTRA=-Wno-error CFLAGS_DEBUG_EXTRA=-Wno-error %s' % (target)
-        #             self.output.warn(cmd)
-        #             self.run(cmd)
-        # else:
-            cmake = CMake(self)
-            cmake.configure(source_folder=self.source_subfolder)
-            cmake.build()
+        cmake = CMake(self)
+        cmake.configure(source_folder=self.source_subfolder)
+        cmake.build()
 
     def package(self):
         self.copy("license*", dst="licenses", src=self.source_subfolder, ignore_case=True, keep_path=False)
         self.copy("*.h", dst="include", src=self.source_subfolder)
-        # if self.options.shared:
-        #     if self.settings.os == "Macos":
-        #         self.copy(pattern="%s/distr/lib/*.dylib" % self.name, dst="lib", keep_path=False)
-        #     else:
-        #         self.copy(pattern="%s/distr/lib/*.so*" % self.name, dst="lib", keep_path=False)
-        # else:
-        #     self.copy(pattern="%s/distr/lib/*.a" % self.name, dst="lib", keep_path=False)
+
         if self.options.shared:
             self.copy("*http_parser.lib", dst="lib", keep_path=False) # Windows
             self.copy("*http_parser.dll", dst="bin", keep_path=False) # Windows
