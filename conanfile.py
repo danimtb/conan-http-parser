@@ -32,7 +32,8 @@ class HttpParserConan(ConanFile):
         cmake.build()
 
     def package(self):
-        self.copy("license*", dst="licenses", src=self.source_subfolder, ignore_case=True, keep_path=False)
+        self.copy("license*", dst="licenses", src=self.source_subfolder, ignore_case=True,
+                  keep_path=False)
         self.copy("*.h", dst="include", src=self.source_subfolder)
 
         if self.options.shared:
